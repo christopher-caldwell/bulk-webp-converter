@@ -1,0 +1,5 @@
+src/out
+src/images
+node_modules
+dist
+yarn-error.log
