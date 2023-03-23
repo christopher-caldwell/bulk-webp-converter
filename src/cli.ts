@@ -1,13 +1,13 @@
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 
-import { bulkWebPConvert } from './index'
+import { BulkConvertArgs, bulkWebPConvert } from './index'
 
 const qualityChoices = new Array(100).fill(null).map((_, index) => index + 1)
 
 /** Handles the parsing of cmd line args, sets the config accordingly */
 export const handleCli = async () => {
-  const { parallelLimit, pathToSource, pathToOutput, quality } = await yargs(hideBin(process.argv))
+  const { parallelLimit, pathToSource, pathToOutput, quality, logLevel } = await yargs(hideBin(process.argv))
     .options('parallelLimit', {
       type: 'number',
       default: 1,
@@ -27,6 +27,12 @@ export const handleCli = async () => {
       describe: 'The quality of the output WebP image [1-100]',
       choices: qualityChoices,
     })
+    .options('logLevel', {
+      type: 'string',
+      default: '-quiet',
+      describe: 'The log level of the conversion',
+      choices: ['-v', '-quiet'],
+    })
     .demandOption('pathToOutput')
     .demandOption('pathToSource')
     .help()
@@ -38,5 +44,11 @@ export const handleCli = async () => {
     .alias('pathToOutput', 'po')
     .strict().argv
 
-  await bulkWebPConvert(pathToSource, pathToOutput, quality, parallelLimit)
+  await bulkWebPConvert({
+    pathToSource,
+    pathToOutput,
+    quality,
+    parallelLimit,
+    logLevel: logLevel as BulkConvertArgs['logLevel'],
+  })
 }

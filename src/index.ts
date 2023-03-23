@@ -1,54 +1,25 @@
-import fs from 'fs'
 import path from 'path'
 import asyncPool from 'tiny-async-pool'
 import webp from 'webp-converter'
-import cliProgress from 'cli-progress'
 
-const conversionProgress = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic)
+import { getAllFilePaths, changeOutputPath, conversionProgress } from './helpers'
 
-const getAllFilePaths = (dirPath: string, arrayOfFilePaths: string[]) => {
-  const filesPaths = fs.readdirSync(dirPath)
+export const bulkWebPConvert = async ({
+  pathToSource,
+  pathToOutput,
+  quality = 100,
+  parallelLimit = 1,
+  logLevel = '-quiet',
+}: BulkConvertArgs) => {
+  if (quality < 1 || quality > 100) throw new Error(`Quality is out of range. Must be between [1-100]. Got ${quality}`)
 
-  arrayOfFilePaths = arrayOfFilePaths || []
-
-  filesPaths.forEach(filesPath => {
-    if (fs.statSync(dirPath + '/' + filesPath).isDirectory()) {
-      arrayOfFilePaths = getAllFilePaths(dirPath + '/' + filesPath, arrayOfFilePaths)
-    } else {
-      arrayOfFilePaths.push(path.join(dirPath, '/', filesPath))
-    }
-  })
-
-  return arrayOfFilePaths
-}
-
-const changeExtensionToWebp = (filePath: string): string => {
-  return filePath.substring(0, filePath.lastIndexOf('.')) + '.webp'
-}
-const changeOutputPath = (sourcePath: string, pathToOutputDir: string) => {
-  const indexOfLastFolder = sourcePath.lastIndexOf('/')
-  const originalFileName = sourcePath.substring(indexOfLastFolder + 1)
-  const fileNameWithWebP = changeExtensionToWebp(originalFileName)
-  return path.resolve(pathToOutputDir, fileNameWithWebP)
-}
-
-export const bulkWebPConvert = async (
-  pathToSource: string,
-  pathToOutput: string,
-  quality: number,
-  parallelLimit: number
-) => {
   const pathToImagesDir = path.resolve(process.cwd(), pathToSource)
   const pathToOutputDir = path.resolve(process.cwd(), pathToOutput)
   const allImages = getAllFilePaths(pathToImagesDir, [])
 
-  console.log({ pathToOutputDir, pathToSource })
-
   const convertImage = (imagePath: string) => {
     const outputPath = changeOutputPath(imagePath, pathToOutputDir)
-    console.log('output path', outputPath)
-    // options for logging are -v and -quiet I think
-    return webp.cwebp(imagePath, outputPath, `-q ${quality}`, '-v')
+    return webp.cwebp(imagePath, outputPath, `-q ${quality}`, logLevel)
   }
 
   conversionProgress.start(allImages.length, 0)
@@ -56,4 +27,12 @@ export const bulkWebPConvert = async (
   for await (const _ of asyncPool(parallelLimit, allImages, convertImage)) {
     conversionProgress.increment()
   }
+}
+
+export interface BulkConvertArgs {
+  pathToSource: string
+  pathToOutput: string
+  quality?: number
+  parallelLimit?: number
+  logLevel?: '-v' | '-quiet'
 }
