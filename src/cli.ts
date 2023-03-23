@@ -52,3 +52,5 @@ export const handleCli = async () => {
     logLevel: logLevel as BulkConvertArgs['logLevel'],
   })
 }
+
+handleCli()

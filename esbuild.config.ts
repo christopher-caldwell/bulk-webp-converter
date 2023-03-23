@@ -3,13 +3,13 @@ import esbuild from 'esbuild'
 const build = async () => {
   try {
     await esbuild.build({
-      entryPoints: ['src/index.ts', 'src/cli.ts'],
+      entryPoints: ['src/index.ts', 'src/helpers.ts', 'src/cli.ts'],
       outdir: 'dist',
-      bundle: true,
+      bundle: false,
       minify: true,
       platform: 'node',
       target: 'node16',
-      external: ['./node_modules/*'],
+      format: 'cjs',
     })
     process.exit()
   } catch (e) {
