@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.3](https://github.com/christopher-caldwell/bulk-webp-converter/compare/v0.0.2...v0.0.3) (2023-03-23)
+
+
+### Bug Fixes
+
+* Publish script ([e70a6f4](https://github.com/christopher-caldwell/bulk-webp-converter/commit/e70a6f47cd97e1bbaa2627725f280e8396018ae7))
+* Readme cli ([331efa3](https://github.com/christopher-caldwell/bulk-webp-converter/commit/331efa3980fccf1bea938b090f149dc3d2368505))
+
 ### 0.0.2 (2023-03-23)
 
 
