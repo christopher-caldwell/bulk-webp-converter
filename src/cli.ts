@@ -39,6 +39,7 @@ export const handleCli = async () => {
     .version()
     .alias('version', 'v')
     .alias('quality', 'q')
+    .alias('logLevel', 'll')
     .alias('parallelLimit', 'pl')
     .alias('pathToSource', 'ps')
     .alias('pathToOutput', 'po')
