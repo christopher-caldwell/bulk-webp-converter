@@ -32,10 +32,10 @@ The following writes the out with an image quality of 75%, doing no more than 5 
 
 ```shell
 npx @caldwell619/bulk-webp-converter \
-  -ps example/source-images/ \
-  -po example/out/ \
-  -q 75 \
-  -pl 5
+  --ps example/source-images/ \
+  --po example/out/ \
+  --q 75 \
+  --pl 5
 ```
 
 ## Code
