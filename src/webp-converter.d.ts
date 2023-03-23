@@ -13,12 +13,12 @@ declare module 'webp-converter' {
   const gwebp: () => Promise<unknown>
 
   const webp: {
-    grant_permission
-    cwebp
-    str2webpstr
-    buffer2webpbuffer
-    dwebp
-    gwebp
+    grant_permission: typeof grant_permission
+    cwebp: typeof cwebp
+    str2webpstr: typeof str2webpstr
+    buffer2webpbuffer: typeof buffer2webpbuffer
+    dwebp: typeof dwebp
+    gwebp: typeof gwebp
   }
 
   export default webp

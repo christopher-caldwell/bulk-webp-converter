@@ -1,0 +1,7 @@
+{
+  "name": "@caldwell619/bulk-webp-converter-example",
+  "private": true,
+  "dependencies": {
+    "@caldwell619/bulk-webp-converter": "link:../"
+  }
+}

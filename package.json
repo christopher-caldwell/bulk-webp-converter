@@ -1,32 +1,41 @@
 {
-  "name": "webp-converter",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "@caldwell619/bulk-webp-converter",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint ./ --ext .ts",
-    "test": "jest",
     "type-check": "tsc --noEmit",
-    "build": "microbundle --compress --target node",
-    "bump:version": "standard-version",
-    "publish:release": "git push --follow-tags origin master && yarn publish",
-    "publish:version": "sh scripts/publish.sh",
-    "convert": "ts-node src/index.ts"
+    "build": "sh scripts/build.sh",
+    "run:example": "ts-node example/index.ts",
+    "publish:version": "sh scripts/publish.sh"
   },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "bin": "dist/bin.js",
   "devDependencies": {
+    "@types/cli-progress": "^3.11.0",
     "@types/node": "^16.10.3",
+    "@types/tiny-async-pool": "^2.0.0",
+    "@types/yargs": "^17.0.23",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
+    "esbuild": "^0.17.12",
     "eslint": "^8.36.0",
     "eslint-plugin-prettier": "^4.2.1",
     "microbundle": "^0.15.1",
     "prettier": "^2.0.5",
+    "rimraf": "^4.4.1",
     "standard-version": "^9.1.1",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "webp-converter": "^2.3.3"
+    "cli-progress": "^3.12.0",
+    "tiny-async-pool": "^2.1.0",
+    "webp-converter": "^2.3.3",
+    "yargs": "^17.7.1"
   }
 }
