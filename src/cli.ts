@@ -54,3 +54,9 @@ export const handleCli = async () => {
 }
 
 handleCli()
+  .then(() => {
+    process.exit()
+  })
+  .catch(() => {
+    process.exit(1)
+  })
