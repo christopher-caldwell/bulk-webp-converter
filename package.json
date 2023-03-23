@@ -4,10 +4,25 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint ./ --ext .ts",
+    "test": "jest",
+    "type-check": "tsc --noEmit",
+    "build": "microbundle --compress --target node",
+    "bump:version": "standard-version",
+    "publish:release": "git push --follow-tags origin master && yarn publish",
+    "publish:version": "sh scripts/publish.sh",
     "convert": "ts-node src/index.ts"
   },
   "devDependencies": {
     "@types/node": "^16.10.3",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "eslint": "^8.36.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "microbundle": "^0.15.1",
+    "prettier": "^2.0.5",
+    "standard-version": "^9.1.1",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.3"
   },
