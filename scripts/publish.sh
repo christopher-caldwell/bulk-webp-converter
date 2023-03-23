@@ -8,21 +8,12 @@ Color_Off="\033[0m" # Text Reset
 printf "\n\n$BICyan$(echo Building the project..:)$Color_Off"
 printf "\n\n"
 
-rm -r bin/ui
-rm bin/main.js
+sh scripts/build.sh
 
-yarn nx run api:build:production
 if [ $? != 0 ]; then
-  printf "\n\n$Red$(echo API build failed.)$Color_Off"
+  printf "\n\n$Red$(echo Build failed.)$Color_Off"
   exit 1
 fi
-
-yarn nx run ui:build:production
-if [ $? != 0 ]; then
-  printf "\n\n$Red$(echo UI build failed.)$Color_Off"
-  exit 1
-fi
-
 
 printf "\n\n$BICyan$(echo Bumping the version number..)$Color_Off"
 
