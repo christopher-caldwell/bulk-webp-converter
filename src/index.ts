@@ -25,6 +25,12 @@ const getAllFilePaths = (dirPath: string, arrayOfFilePaths: string[]) => {
 const changeExtensionToWebp = (filePath: string): string => {
   return filePath.substring(0, filePath.lastIndexOf('.')) + '.webp'
 }
+const changeOutputPath = (sourcePath: string, pathToOutputDir: string) => {
+  const indexOfLastFolder = sourcePath.lastIndexOf('/')
+  const originalFileName = sourcePath.substring(indexOfLastFolder + 1)
+  const fileNameWithWebP = changeExtensionToWebp(originalFileName)
+  return path.resolve(pathToOutputDir, fileNameWithWebP)
+}
 
 export const bulkWebPConvert = async (
   pathToSource: string,
@@ -39,7 +45,8 @@ export const bulkWebPConvert = async (
   console.log({ pathToOutputDir, pathToSource })
 
   const convertImage = (imagePath: string) => {
-    const outputPath = changeExtensionToWebp(imagePath)
+    const outputPath = changeOutputPath(imagePath, pathToOutputDir)
+    console.log('output path', outputPath)
     // options for logging are -v and -quiet I think
     return webp.cwebp(imagePath, outputPath, `-q ${quality}`, '-v')
   }
