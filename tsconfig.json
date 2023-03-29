@@ -1,11 +1,15 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
     "strict": true /* Enable all strict type-checking options. */,
     "outDir": "dist",
     "declaration": true,
     "emitDeclarationOnly": true,
+    "resolveJsonModule": true,
+    "target": "ES2018"
   },
-  "include": ["src/*"]
+  "include": ["src/*"],
+  "exclude": ["dist"]
 }
