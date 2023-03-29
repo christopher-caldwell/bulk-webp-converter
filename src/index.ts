@@ -27,6 +27,7 @@ export const bulkWebPConvert = async ({
   for await (const _ of asyncPool(parallelLimit, allImages, convertImage)) {
     conversionProgress.increment()
   }
+  return 'done'
 }
 
 export interface BulkConvertArgs {
