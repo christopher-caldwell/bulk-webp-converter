@@ -2,7 +2,6 @@ import { Builtins, Command, Option, runExit } from 'clipanion'
 import { Cli } from 'clipanion'
 import * as t from 'typanion'
 
-import { version } from '../package.json'
 import { BulkConvertArgs, bulkWebPConvert } from './index'
 
 const isQuality = t.cascade(t.isNumber(), [t.isInteger(), t.isInInclusiveRange(1, 100)])
@@ -59,7 +58,6 @@ const [node, app, ...args] = process.argv
 const cli = new Cli({
   binaryLabel: `Bulk WebP Convert`,
   binaryName: `${node} ${app}`,
-  binaryVersion: version,
 })
 
 cli.register(ConvertCommand)
