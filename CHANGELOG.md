@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/christopher-caldwell/bulk-webp-converter/compare/v0.0.3...v0.0.4) (2023-03-29)
+
+
+### Features
+
+* Adding filter ([#4](https://github.com/christopher-caldwell/bulk-webp-converter/issues/4)) ([8833238](https://github.com/christopher-caldwell/bulk-webp-converter/commit/883323833127ed2fabfee7ee57a4fcfdbb0a775f))
+* Moving to CLIPanion ([#3](https://github.com/christopher-caldwell/bulk-webp-converter/issues/3)) ([1d0353b](https://github.com/christopher-caldwell/bulk-webp-converter/commit/1d0353b7531f0fdc0d19573bc5a7fa0b4807d3f1))
+
 ### [0.0.3](https://github.com/christopher-caldwell/bulk-webp-converter/compare/v0.0.2...v0.0.3) (2023-03-23)
 
 
