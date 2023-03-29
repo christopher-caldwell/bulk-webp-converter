@@ -45,6 +45,10 @@ It can be imported if you'd rather create a file and run it. An example use case
 > :warning: **Note**
 > Keep in mind that the aliases cannot be used with code. With TypeScript, this isn't an issue but for JS, they must match the first column in the options table
 
+### Filter
+
+There is an option only available to the code usage for filtering image paths. This could eventually make it's way to the CLI via regex, but for now is only on the code side.
+
 ```js
 import { bulkWebPConvert } from '@caldwell619/bulk-webp-converter'
 
@@ -52,7 +56,16 @@ import { bulkWebPConvert } from '@caldwell619/bulk-webp-converter'
 const pathToSource = 'example/source-images'
 const pathToOutput = 'example/out'
 
-bulkWebPConvert({ pathToSource, pathToOutput, quality: 100, parallelLimit: 1 })
+bulkWebPConvert({
+  pathToSource,
+  pathToOutput,
+  quality: 100,
+  parallelLimit: 1,
+  // Return `true` if you want the image processed
+  filter(path) {
+    return !path.includes('Forest')
+  },
+})
   .then(() => {
     process.exit()
   })
