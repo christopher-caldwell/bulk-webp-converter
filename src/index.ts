@@ -10,6 +10,7 @@ export const bulkWebPConvert = async ({
   quality = 100,
   parallelLimit = 1,
   logLevel = '-quiet',
+  filter,
 }: BulkConvertArgs) => {
   if (quality < 1 || quality > 100) throw new Error(`Quality is out of range. Must be between [1-100]. Got ${quality}`)
 
@@ -17,8 +18,12 @@ export const bulkWebPConvert = async ({
   const pathToOutputDir = path.resolve(process.cwd(), pathToOutput)
   const allImages = getAllFilePaths(pathToImagesDir, [])
 
-  const convertImage = (imagePath: string) => {
+  const convertImage = async (imagePath: string) => {
     const outputPath = changeOutputPath(imagePath, pathToOutputDir)
+    if (filter) {
+      const shouldContinue = filter(imagePath)
+      if (!shouldContinue) return
+    }
     return webp.cwebp(imagePath, outputPath, `-q ${quality}`, logLevel)
   }
 
@@ -36,4 +41,6 @@ export interface BulkConvertArgs {
   quality?: number
   parallelLimit?: number
   logLevel?: '-v' | '-quiet'
+  /** Optional filter that will determine whether or not a path should be converted */
+  filter?: (path: string) => boolean
 }

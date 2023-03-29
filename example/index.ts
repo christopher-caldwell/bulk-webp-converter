@@ -4,7 +4,15 @@ import { bulkWebPConvert } from '@caldwell619/bulk-webp-converter'
 const pathToSource = 'example/source-images'
 const pathToOutput = 'example/out'
 
-bulkWebPConvert({ pathToSource, pathToOutput, quality: 100, parallelLimit: 1 })
+bulkWebPConvert({
+  pathToSource,
+  pathToOutput,
+  quality: 100,
+  parallelLimit: 1,
+  filter(path) {
+    return !path.includes('Forest')
+  },
+})
   .then(() => {
     process.exit()
   })
