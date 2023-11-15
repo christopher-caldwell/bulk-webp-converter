@@ -24,6 +24,7 @@ export const bulkWebPConvert = async ({
       const shouldContinue = filter(imagePath)
       if (!shouldContinue) return
     }
+    if (imagePath.includes('.DS_Store')) return
     return webp.cwebp(imagePath, outputPath, `-q ${quality}`, logLevel)
   }
 
