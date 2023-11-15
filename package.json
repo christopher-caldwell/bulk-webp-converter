@@ -1,6 +1,6 @@
 {
   "name": "@caldwell619/bulk-webp-converter",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "scripts": {
     "format": "prettier --write .",
@@ -9,7 +9,7 @@
     "just:build": "ts-node esbuild.config.ts",
     "build": "sh scripts/build.sh",
     "run:example": "ts-node example/index.ts",
-    "publish:version": "sh scripts/publish.sh"
+    "release": "sh scripts/publish.sh"
   },
   "files": [
     "dist"

@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/christopher-caldwell/bulk-webp-converter/compare/v0.0.4...v0.0.5) (2023-11-15)
+
+
+### Bug Fixes
+
+* Adding doc about filter ([1e29c0e](https://github.com/christopher-caldwell/bulk-webp-converter/commit/1e29c0edf164692b1a5b9266f8d34d1e670d03db))
+* Always excluding .DS_Store ([d0110bf](https://github.com/christopher-caldwell/bulk-webp-converter/commit/d0110bf051b9a359e477f13c22cda64b90a7351c))
+
 ### [0.0.4](https://github.com/christopher-caldwell/bulk-webp-converter/compare/v0.0.3...v0.0.4) (2023-03-29)
 
 
